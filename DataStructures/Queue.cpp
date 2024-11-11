@@ -14,26 +14,26 @@ void cleanQueue(Queue* q)
 
 void enqueue(Queue* q, unsigned int newValue)
 {
-	if (q->CurrentSpot < q->MaxSize)
+	if (q->CurrentSpot < q->MaxSize) // Checks is its possible to add a new element
 	{
 		q->tnQueue[q->CurrentSpot] = newValue;
-		q->CurrentSpot++;
+		q->CurrentSpot++; // Continues to the next index in the array
 	}
 }
 
 int dequeue(Queue* q)
 {
-	if (q->CurrentSpot > 0)
+	if (q->CurrentSpot > 0) // Not empty
 	{
 		int rItem = q->tnQueue[ZERO];
-		for (int i = 1; i < q->MaxSize; i++)
+		for (int i = 1; i < q->MaxSize; i++) // Runs through the entire array and moves it back since the last element is now gone
 		{
 			q->tnQueue[i - 1] = q->tnQueue[i];
 		}
-		q->CurrentSpot--;
+		q->CurrentSpot--; // Moves the index back by one
 		return rItem;
 	}
-	return -1;
+	return -1; // Empty
 
 }
 bool isEmpty(Queue* s)
