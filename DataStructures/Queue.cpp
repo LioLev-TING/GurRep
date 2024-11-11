@@ -23,14 +23,17 @@ void enqueue(Queue* q, unsigned int newValue)
 
 int dequeue(Queue* q)
 {
-	int rItem = q->tnQueue[ZERO];
-	q->tnQueue[q->CurrentSpot] = 0;
-	for (int i = 1; i < q->MaxSize; i++)
+	if (q->CurrentSpot > 0)
 	{
-		q->tnQueue[i - 1] = q->tnQueue[i];
+		int rItem = q->tnQueue[ZERO];
+		for (int i = 1; i < q->MaxSize; i++)
+		{
+			q->tnQueue[i - 1] = q->tnQueue[i];
+		}
+		q->CurrentSpot--;
+		return rItem;
 	}
-	q->CurrentSpot--;
-	return rItem;
+	return -1;
 
 }
 bool isEmpty(Queue* s)
@@ -39,5 +42,5 @@ bool isEmpty(Queue* s)
 }
 bool isFull(Queue* s)
 {
-	return s->CurrentSpot == s->MaxSize - 1;
+	return s->CurrentSpot == s->MaxSize;
 }
