@@ -2,18 +2,33 @@
 
 void push(Stack* s, unsigned int element)
 {
-	s->Head = createIntNode(s->Head);
-	intNode* step = s->Head;
-	while (step->next != nullptr)
+	if (s->Head != nullptr)
 	{
-		step = step->next;
+		s->Head = createIntNode(s->Head);
+		intNode* step = s->Head;
+		while (step->next != nullptr)
+		{
+			step = step->next;
+		}
+		step->data = element;
 	}
-	step->data = element;
+	else
+	{
+		s->Head = new intNode;
+		s->Head->data = element;
+		s->Head->next = nullptr;
+	}
 }
 
 int pop(Stack* s)
 {
-	if (!isEmpty(s))
+	if (s->Head != nullptr && s->Head->next == nullptr)
+	{
+		int r = s->Head->data;
+		s->Head = nullptr;
+		return r;
+	}
+	else if (!isEmpty(s))
 	{
 		int r = 0;
 		intNode* step = s->Head;
@@ -23,30 +38,30 @@ int pop(Stack* s)
 		}
 		r = step->data;
 		deleteFromEnd(s->Head);
+		return r;
 	}
 	return -1;
 }
 
 void initStack(Stack* s)
 {
-	s = new Stack;
-	s->Head = new intNode;
-	s->Head->data = 0;
-	s->Head->next = nullptr;
+	s->Head = nullptr;
 }
 
 void cleanStack(Stack* s)
 {
-	intNode* step = s->Head;
-	intNode* next = s->Head;
-	while (step->next != nullptr)
+	if (!isEmpty(s))
 	{
-		next = step->next;
-		delete step;
-		step = next;
+		intNode* step = s->Head;
+		intNode* next = s->Head;
+		while (step->next != nullptr)
+		{
+			next = step->next;
+			delete step;
+			step = next;
+		}
+		delete next;
 	}
-	delete next;
-	delete s;
 }
 
 bool isEmpty(Stack* s)
