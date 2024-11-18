@@ -7,6 +7,7 @@
  using std::cout;
  using std::endl;
 
+
  #define GREEN 2
  #define DARK_RED 4
  #define PURPLE 5
@@ -61,7 +62,7 @@
  		"[ID: " + std::to_string(user.getID()) +
         ", Username: " + user.getUserName() +
         ", Age: " + std::to_string(user.getAge()) +
-        ", All devices On: " ;
+        ", All devices On: " + (user.checkIfDevicesAreOn() ? "Yes" : "No") + "]";
  }
 
  std::string getUserDevicesString(User& user)
@@ -272,7 +273,7 @@
  		"Exercise 2 - Social Network\n" <<
  		"Part 2 - User\n" <<
  		"###########################\n" << std::endl;
- 	set_console_color(WHITE);
+ 	set_console_color(PURPLE);
 
  	bool testResult = test2User();
 
@@ -280,13 +281,13 @@
  	{
  		set_console_color(GREEN);
  		std::cout << "\n########## Ex2 Part2 Tests Passed!!! ##########" << "\n\n";
- 		set_console_color(WHITE);
+ 		set_console_color(PURPLE );
  	}
  	else
  	{
  		set_console_color(RED);
  		std::cout << "\n########## TEST Failed :( ##########\n";
- 		set_console_color(WHITE);
+ 		set_console_color(PURPLE);
  	}
 
 

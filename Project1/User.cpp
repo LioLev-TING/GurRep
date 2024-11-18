@@ -1,6 +1,9 @@
 #include "User.h"
 
-void User::init(unsigned int id, std::string username, unsigned int age)
+using std::cout;
+using std::endl;
+
+void User::init(const unsigned int id, const std::string username, const unsigned int age)
 {
 	this->_id = id;
 	this->_username = username;
@@ -10,7 +13,10 @@ void User::init(unsigned int id, std::string username, unsigned int age)
 
 void User::clear()
 {
-	delete this;
+	delete this->_devices;
+	this->_age = 0;
+	this->_id = 0;
+	this->_username;
 }
 
 unsigned int User::getID() const
@@ -33,16 +39,17 @@ DevicesList& User::getDevices() const
 	return *this->_devices;
 }
 
-void User::addDevice(Device newDevice)
+void User::addDevice(const Device newDevice)
 {
-	DeviceNode* a = nullptr;
-	a->DeviceNode::init(newDevice);
-	if (this->_devices == nullptr)
+	if (this != nullptr && this->_devices == nullptr)
 	{
+		DeviceNode* a = new DeviceNode;
+		a->init(newDevice);
+		this->_devices = new DevicesList;
 		this->_devices->init();
 		this->_devices->set_first(a);
 	}
-	else
+	else if (this != nullptr)
 	{
 		this->_devices->add(newDevice);
 	}
@@ -50,6 +57,7 @@ void User::addDevice(Device newDevice)
 
 bool User::checkIfDevicesAreOn() const
 {
+	if (this->_devices == nullptr) { return true; }
 	DeviceNode* step = this->_devices->get_first();
 	while (step->get_next() != nullptr)
 	{
@@ -61,3 +69,4 @@ bool User::checkIfDevicesAreOn() const
 	}
 	return true;
 }
+
