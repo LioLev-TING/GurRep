@@ -39,6 +39,7 @@ public:
 
 	// adds a Device object to the end of the list
 	void add(const Device device_to_add);
+	std::string window_devices()const;
 
 private:
 	DeviceNode* _first;   // first Node in the list

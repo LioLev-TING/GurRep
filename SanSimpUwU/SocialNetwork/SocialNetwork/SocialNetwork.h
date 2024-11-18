@@ -3,6 +3,7 @@
 #include <string>
 #include <iostream>
 #include "ProfileList.h"
+using namespace std;
 
 class SocialNetwork
 {

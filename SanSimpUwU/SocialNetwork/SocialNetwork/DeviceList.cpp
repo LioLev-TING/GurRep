@@ -1,5 +1,7 @@
 #include "DeviceList.h"
 #include <iostream>
+#include <string.h>
+
 using std::cout;
 using std::endl;
 
@@ -85,5 +87,25 @@ void DevicesList::add(const Device new_device)
 		}
 		curr->set_next(new_node); // add the new node at the end of the list
 	}
+}
+
+std::string DevicesList::window_devices() const
+{
+	std::string window_list = "";
+	if (this->get_first() == nullptr) { return window_list; }
+	DeviceNode* step = this->get_first();
+	while (step != nullptr)
+	{
+		if (!(step->get_data().getOS().find("Windows")))
+		{
+			window_list += "[";
+			window_list += std::to_string(step->get_data().getID());
+			window_list += ", "; 
+			window_list += step->get_data().getOS();
+			window_list += "], ";
+		}
+		step = step->get_next();
+	}
+	return window_list;
 }
 
