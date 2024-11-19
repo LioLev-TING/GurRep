@@ -30,12 +30,47 @@ private:
 	unsigned int id;
 
 public:
+	/*
+	This function returns the OS of the object
+	input: none
+	output: a string
+	*/
 	std::string getOS() const;
+	/*
+	Returns weather the object (device) is active 
+	input: none
+	output: true or false
+	*/
 	bool isActive() const;
+	/*
+	Turns the object to active
+	input: none
+	output: none
+	*/
 	void activate();
+	/*
+	Turns the object off
+	input: none
+	output: none
+	*/
 	void deactivate();
+	/*
+	Returns the id of the device object
+	input: none
+	output: unsigned int
+	*/
 	unsigned int getID() const;
+	/*
+	Returns the type of the object (device)
+	input: none
+	output: none
+	*/
 	DeviceType getType() const;
+	/*
+	initializes the device object
+	input: the params of the objects: id type os
+	output: none
+	*/
 	void init(unsigned int id, DeviceType type, std::string os);
 };
 

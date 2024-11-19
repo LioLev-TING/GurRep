@@ -38,7 +38,7 @@ void Profile::addPostToProfilePage(const std::string post)
 
 void Profile::addFriend(const User friend_to_add)
 {
-	if (this->_friend_list == nullptr)
+	if (this->_friend_list == nullptr) // first node
 	{
 		this->_friend_list = new UserList;
 		UserNode* a = new UserNode;
@@ -70,12 +70,12 @@ std::string Profile::getPage() const
 std::string Profile::getFriends() const
 {
 	std::string names = "";
-	if (this->_friend_list != nullptr)
+	if (this->_friend_list != nullptr) // more than 0 friends
 	{
 		UserNode* step = this->_friend_list->get_first();
 		names += step->get_data().getUserName();
 		step = step->get_next();
-		while (step != nullptr)
+		while (step != nullptr) // still more friends to check
 		{
 			names += "," + step->get_data().getUserName();
 			step = step->get_next();
@@ -87,20 +87,20 @@ std::string Profile::getFriends() const
 std::string Profile::getFriendsWithSameNameLength() const
 {
 	std::string names = "";
-	if (this->_friend_list == nullptr) { return names; }
+	if (this->_friend_list == nullptr) { return names; } // not empty
 	UserNode* step = this->_friend_list->get_first();
-	unsigned int Length = this->_owner.getUserName().length();
-	while (step != nullptr && step->get_data().getUserName().length() != Length)
+	unsigned int Length = this->_owner.getUserName().length(); // remember the wanted length
+	while (step != nullptr && step->get_data().getUserName().length() != Length) // get first one
 	{
 		step = step->get_next();
 	}
-	if (step == nullptr) { return names; }
+	if (step == nullptr) { return names; } // reached an end
 	names += step->get_data().getUserName();
 	step = step->get_next();
-	if (step == nullptr) { return names; }
-	while (step != nullptr)
+	if (step == nullptr) { return names; }  // next reached an end
+	while (step != nullptr) // more friends
 	{
-		if (step->get_data().getUserName().length() == Length)
+		if (step->get_data().getUserName().length() == Length) // length check
 		{
 			names += "," + step->get_data().getUserName();
 		}

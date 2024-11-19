@@ -39,6 +39,11 @@ public:
 
 	// adds a Device object to the end of the list
 	void add(const Device device_to_add);
+	/*
+	Finds the window devices there are in the Nodes
+	input: none
+	output: String
+	*/
 	std::string window_devices()const;
 
 private:

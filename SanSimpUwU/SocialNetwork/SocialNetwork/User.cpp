@@ -41,7 +41,7 @@ DevicesList& User::getDevices() const
 
 void User::addDevice(const Device newDevice)
 {
-	if (this != nullptr && this->_devices == nullptr)
+	if (this != nullptr && this->_devices == nullptr) // first node
 	{
 		DeviceNode* a = new DeviceNode;
 		a->init(newDevice);
@@ -57,11 +57,11 @@ void User::addDevice(const Device newDevice)
 
 bool User::checkIfDevicesAreOn() const
 {
-	if (this->_devices == nullptr) { return true; }
+	if (this->_devices == nullptr) { return true; } // not empty
 	DeviceNode* step = this->_devices->get_first();
 	while (step->get_next() != nullptr)
 	{
-		if (!step->get_data().isActive())
+		if (!step->get_data().isActive())//if device isnt active
 		{
 			return false;
 		}

@@ -92,11 +92,11 @@ void DevicesList::add(const Device new_device)
 std::string DevicesList::window_devices() const
 {
 	std::string window_list = "";
-	if (this->get_first() == nullptr) { return window_list; }
+	if (this->get_first() == nullptr) { return window_list; } // no devices
 	DeviceNode* step = this->get_first();
-	while (step != nullptr)
+	while (step != nullptr) // as long as it doesnt reach its end
 	{
-		if (!(step->get_data().getOS().find("Windows")))
+		if (!(step->get_data().getOS().find("Windows"))) // if the device is windows
 		{
 			window_list += "[";
 			window_list += std::to_string(step->get_data().getID());
@@ -104,7 +104,7 @@ std::string DevicesList::window_devices() const
 			window_list += step->get_data().getOS();
 			window_list += "], ";
 		}
-		step = step->get_next();
+		step = step->get_next(); // next device
 	}
 	return window_list;
 }

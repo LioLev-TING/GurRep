@@ -28,13 +28,13 @@ int SocialNetwork::getMinAge() const
 bool SocialNetwork::addProfile(const Profile profile_to_add)
 {
     bool okay = false;
-    if (profile_to_add.getOwner().getAge() >= this->_min_age)
+    if (profile_to_add.getOwner().getAge() >= this->_min_age) // allowed to join
     {
         if (this->profiles != nullptr)
         {
             this->profiles->add(profile_to_add);
         }
-        else
+        else // first node
         {
             ProfileNode* a = new ProfileNode;
             a->set_data(profile_to_add);
@@ -52,15 +52,15 @@ std::string SocialNetwork::getWindowsDevices() const
 {
     std::string window_device_list = "";
     ProfileNode* step = this->profiles->get_first();
-    while (step != nullptr)
+    while (step != nullptr) // more to check
     {
-        window_device_list += step->get_data().getOwner().getDevices().window_devices();
+        window_device_list += step->get_data().getOwner().getDevices().window_devices(); // get all window devices
         step = step->get_next();
     }
     if (window_device_list != "")
     {
         window_device_list.pop_back();
-        window_device_list.pop_back();
+        window_device_list.pop_back(); // remove ", "
     }
     return window_device_list;
 }
